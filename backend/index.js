@@ -1,5 +1,6 @@
 import express from "express";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
+import cookieParser from "cookie-parser";
 import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import connectDB from "./config/db.js";
@@ -13,6 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 
 connectDB();
 
+app.use(cookieParser());
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
 
