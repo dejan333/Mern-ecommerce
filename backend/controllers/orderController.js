@@ -5,20 +5,56 @@ import Order from '../models/orderModel.js'
 //route Post / api/orders
 //access Private
 const addOrderItems = asyncHandler(async (req,res) => {
-    res.send('create order')
+    const {
+        orderItems,
+        shippingAddress,
+        paymendMethod,
+        itemsPrice,
+        taxPrice,
+        shippingPrice,
+        totalPrice
+    } = req.body;
+    if(orderItems && orderItems.length === 0) {
+        res.status(400)
+        throw new Error('No order items')
+    }else{
+        const order = new Order({
+            user: req.user._id,
+            shippingAddress,
+            paymendMethod,
+            itemsPrice,
+            taxPrice,
+            shippingPrice,
+            totalPrice
+        })
+
+        const createOrder = await order.save();
+
+        res.status(201).json(createOrder)
+    }
+   
 })
 //desc Get logged in user orders
 //route Get /api/orders/myorders
 //access Private
 const getMyOrder = asyncHandler(async (req,res) => {
-    res.send('get loggen in user orders')
+    const orders = Order.find({user: req.user._id})
+    res.json(orders)
 })
 //desc Get ORDER BY ID
 //route Get /api/orders/myorders
 //access Private
 const getOrderById = asyncHandler(async (req,res) => {
-    res.send('get order by Id')
+    const order = Order.findById(req.params.id).populate('user', 'name email')
+
+    if(order){
+        res.json(order)
+    }else {
+        res.status(400)
+        throw new Error('Order not found')
+    }
 })
+
 //desc  update order do paid
 //route Get /api/orders/:id/pay
 //access Private/
