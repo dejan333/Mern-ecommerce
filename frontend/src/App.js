@@ -12,7 +12,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const expirationTime = localStorage.getItem("expirationTime");
+    const expirationTime = localStorage.getItem('expirationTime');
     if (expirationTime) {
       const currentTime = new Date().getTime();
       if (currentTime > expirationTime) {
@@ -20,6 +20,7 @@ function App() {
       }
     }
   }, [dispatch]);
+
 
   return (
     <>
