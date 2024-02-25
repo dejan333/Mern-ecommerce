@@ -7,6 +7,7 @@ import { LinkContainer } from "react-router-bootstrap";
 
 import logo from "../assets/logo.png";
 import { logout } from "../slices/authSlice";
+import { useInsertionEffect } from "react";
 
 function Header() {
   const { cartItems } = useSelector((state) => state.cart);
@@ -73,6 +74,9 @@ function Header() {
                 <NavDropdown title="Admin" id="adminmenu">
                   <LinkContainer to="/admin/orderlist">
                     <NavDropdown.Item>Orders</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to="/admin/productlist">
+                    <NavDropdown.Item>Products</NavDropdown.Item>
                   </LinkContainer>
                 </NavDropdown>
               )}
