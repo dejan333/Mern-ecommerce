@@ -12,17 +12,6 @@ const loginUser = asyncHandler(async (req, res) => {
   const user = await Users.findOne({ email });
 
   if (user && (await user.matchPassword(password))) {
-    // const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-    //   expiresIn: "1d",
-    // });
-    // //Set Jwt token as an HTTP-Only cookie
-    // res.cookie("jwt", token),
-    //   {
-    //     httpOnly: true,
-    //     secure: process.env.NODE_ENV !== "development", //Use  secure cookies in production
-    //     sameSite: "strict", // Prevent CSRF attaks
-    //     maxAge: 30 * 24 * 60 * 60 * 1000, //30days
-    //   };
     generateToken(res, user._id);
     res.json({
       _id: user._id,
@@ -34,8 +23,6 @@ const loginUser = asyncHandler(async (req, res) => {
     res.status(401);
     throw new Error("Invalid email or password");
   }
-  console.log();
-  res.send("auth user/login");
 });
 
 //desc    Register a new user
@@ -95,7 +82,6 @@ const getUserProfile = asyncHandler(async (req, res) => {
     res.status(404);
     throw new Error("User not found");
   }
-  res.send("get user profile");
 });
 //desc    Update user profile
 //route   PUT /api/users/profile
