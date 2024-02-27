@@ -1,6 +1,6 @@
 import { LinkContainer } from "react-router-bootstrap";
 import { Table, Button } from "react-bootstrap";
-import { FaTimes } from "react-icons/fa";
+import { FaTimes, FaCheck } from "react-icons/fa";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
 import { useGetOrdersQuery } from "../../slices/ordersApiSlice";
@@ -38,17 +38,19 @@ const OrderListScreen = () => {
                 <td>{order.totalPrice}</td>
                 <td>
                   {order.isPaid ? (
-                    order.isPaidAt
+                    order.paidAt.substring(0, 10)
                   ) : (
                     <FaTimes style={{ color: "red" }} />
                   )}
                 </td>
                 <td>
-                  {order.isDelivered ? (
-                    order.isDeliveredAt
-                  ) : (
-                    <FaTimes style={{ color: "red" }} />
-                  )}
+                  <>
+                    {order.isDelivered ? (
+                      order.deliveredAt.substring(0, 10)
+                    ) : (
+                      <FaTimes style={{ color: "red" }} />
+                    )}
+                  </>
                 </td>
                 <td>
                   <LinkContainer to={`/order/${order._id}`}>
