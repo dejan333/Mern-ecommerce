@@ -1,5 +1,5 @@
 import asyncHandler from "../middleware/asyncHandler.js";
-import Users from "../models/userModel.js";
+import User from "../models/userModel.js";
 import jwt from "jsonwebtoken";
 import generateToken from "../utils/generateToken.js";
 
@@ -9,7 +9,7 @@ import generateToken from "../utils/generateToken.js";
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
-  const user = await Users.findOne({ email });
+  const user = await User.findOne({ email });
 
   if (user && (await user.matchPassword(password))) {
     generateToken(res, user._id);
@@ -31,7 +31,7 @@ const loginUser = asyncHandler(async (req, res) => {
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
 
-  const userExists = await Users.findOne({ email });
+  const userExists = await User.findOne({ email });
   if (userExists) {
     res.status(400);
     throw new Error("User already exists");
@@ -68,7 +68,7 @@ const logoutUser = asyncHandler(async (req, res) => {
 //route   GET /api/users/profile
 //acess   Private
 const getUserProfile = asyncHandler(async (req, res) => {
-  const user = await Users.findById(req.user._id);
+  const user = await User.findById(req.user._id);
 
   if (user) {
     res.json({
@@ -87,7 +87,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
 //route   PUT /api/users/profile
 //acess   Private/
 const updateUserProfile = asyncHandler(async (req, res) => {
-  const user = await Users.findById(req.user._id);
+  const user = await User.findById(req.user._id);
 
   if (user) {
     user.name = req.body.name || user.name;
@@ -115,7 +115,8 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 //route   GET /api/users
 //acess   Private/Admin
 const getUsers = asyncHandler(async (req, res) => {
-  res.send("get users");
+  const users = await User.find({});
+  res.json(users);
 });
 
 //desc    Delete user
