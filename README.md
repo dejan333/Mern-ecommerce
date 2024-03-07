@@ -1,5 +1,3 @@
-
-````markdown
 # MERN E-commerce App
 
 Welcome to the MERN E-commerce repository! This project is a full-stack web application built using the MERN stack (MongoDB, Express.js, React.js, and Node.js), designed to create a simple yet functional e-commerce platform.
@@ -58,10 +56,12 @@ To run this application locally, follow these steps:
 
 Contributions are welcome! If you find any bugs or have suggestions for improvement, please feel free to open an issue or submit a pull request.
 
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Credits
 
-This project was developed by [gjorgievskidejan91](https://github.com/gjorgievskidejan91).
+This project was developed by [gjorgievskidejan91](https://github.com/gjorgievskidejan91). Special thanks to all the contributors who helped make this project possible.
 
 Thank you for using our MERN E-commerce application! If you have any questions or need further assistance, feel free to reach out. Happy shopping! 🛒🚀
-````
