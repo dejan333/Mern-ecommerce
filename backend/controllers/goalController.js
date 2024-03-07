@@ -26,8 +26,8 @@ const getGoalById = asyncHandler(async (req, res) => {
 // @route   POST /api/goals/
 // @access  Public
 const createGoal = asyncHandler(async (req, res) => {
-  const { goalTitle } = req.body;
-  const goal = new Goal({ goalTitle });
+  const { goalTitle, score } = req.body;
+  const goal = new Goal({ goalTitle, score });
   const createdGoal = await goal.save();
   res.status(201).json(createdGoal);
 });

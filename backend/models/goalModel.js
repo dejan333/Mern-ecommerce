@@ -14,6 +14,7 @@ const goalSchema = mongoose.Schema(
     score: {
       type: "number",
       default: 0,
+      required: true,
     },
   },
 

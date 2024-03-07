@@ -21,11 +21,11 @@ function GoalScreen() {
   const [showForm, setShowForm] = useState(false);
 
   //Create goal
-  const handleCreateGoal = async (goalTitle) => {
+  const handleCreateGoal = async (goalTitle, score) => {
     try {
       // Dispatch createGoal mutation with the goal title
-      await createGoal({ goalTitle });
-      console.log(goalTitle);
+      await createGoal({ goalTitle, score });
+      console.log(score);
       refetch();
       toast.success("success");
     } catch (error) {

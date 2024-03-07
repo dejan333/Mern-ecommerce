@@ -3,7 +3,7 @@ import { Card, Button } from "react-bootstrap";
 import { FaTrash, FaCheck } from "react-icons/fa";
 
 const Goal = ({ goal, handleDelete, handleUpdateCompletion }) => {
-  const { _id, goalTitle } = goal;
+  const { _id, goalTitle, score } = goal;
   const [isCompleted, setIsCompleted] = useState(goal.isCompleted);
 
   const handleUpdate = async (id) => {
@@ -19,7 +19,9 @@ const Goal = ({ goal, handleDelete, handleUpdateCompletion }) => {
         <Card.Title as="div">
           <strong>{goalTitle}</strong>
         </Card.Title>
-        <Card.Text as="div">{/* Add additional goal details here */}</Card.Text>
+        <Card.Text as="div">
+          <p>{score}</p>
+        </Card.Text>
         <div className="d-flex justify-content-between align-items-center">
           <Button
             variant="danger"
