@@ -1,4 +1,3 @@
-Certainly! Below is the README in Markdown format:
 
 ````markdown
 # MERN E-commerce App
