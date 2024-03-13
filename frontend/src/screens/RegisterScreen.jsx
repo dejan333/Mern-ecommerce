@@ -43,7 +43,8 @@ function RegisterScreen() {
         dispatch(setCredentials({ ...res }));
         navigate(redirect);
       } catch (err) {
-        console.error(err?.data?.message || err.error);
+        // console.error(err?.data?.message || err.error);
+        console.error("err?.data?.message || err.error");
       }
     }
   };

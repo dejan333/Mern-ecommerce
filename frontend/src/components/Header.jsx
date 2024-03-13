@@ -7,6 +7,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import SearchBox from "./SearchBox";
 import logo from "../assets/logo.png";
 import { logout } from "../slices/authSlice";
+import { resetCart } from "../slices/cartSlice";
 import { useInsertionEffect } from "react";
 
 function Header() {
@@ -22,6 +23,7 @@ function Header() {
     try {
       await logoutApiHandler().unwrap();
       dispatch(logout());
+      dispatch(resetCart());
       navigate("/login");
     } catch (err) {
       console.error(err);
